@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  elasticsearch:
+    build:
+      context: ELASTICSEARCH/
+      dockerfile: Dockerfile
+    ports:
+      - 9200:9200
+    # volumes:
+    #   - ./env/.env:/app/.env
+    #   - backend_v:/app/backend
+    networks:
+      - ELK
+
+networks:
+  ELK:
+    driver: bridge

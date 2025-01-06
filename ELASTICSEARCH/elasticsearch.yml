@@ -1,0 +1,29 @@
+# Cluster settings
+cluster.name: "my-cluster"
+node.name: "node-1"
+
+# Network settings
+network.host: 0.0.0.0
+http.port: 9200
+
+# Discovery settings (for clusters)
+discovery.seed_hosts: ["node-1", "node-2"]
+cluster.initial_master_nodes: ["node-1"]
+
+# Security settings
+xpack.security.enabled: true
+xpack.security.http.ssl.enabled: true
+xpack.security.http.ssl.keystore.path: certs/http.p12
+xpack.security.transport.ssl.enabled: true
+xpack.security.transport.ssl.keystore.path: certs/transport.p12
+xpack.security.transport.ssl.truststore.path: certs/transport.p12
+
+# Index settings
+index.number_of_shards: 1
+index.number_of_replicas: 1
+
+# Logging settings
+logger.level: info
+
+# Memory settings
+bootstrap.memory_lock: true
