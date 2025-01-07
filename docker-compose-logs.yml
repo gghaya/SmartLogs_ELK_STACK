@@ -6,8 +6,12 @@ services:
       dockerfile: Dockerfile
     ports:
       - 9200:9200
+      - 9300:9300
     volumes:
       - "es-data:/usr/share/elasticsearch/data"
+    environment:
+      - "xpack.ml.use_auto_machine_memory_percent=true"
+    mem_limit: 1GB
     networks:
       - ELK
   kibana:
