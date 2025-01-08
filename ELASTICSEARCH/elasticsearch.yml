@@ -1,35 +1,28 @@
-# Cluster settings
-cluster.name: "my-cluster"
-node.name: "node-1"
 
-# Network settings
-network.host: 0.0.0.0
-http.port: 9200
+cluster.name: "mon-cluster"
+node.name: "noeud-1"
+network.host: 0.0.0.0       
+http.port: 9200            
 
-# Discovery settings (for clusters)
-discovery.seed_hosts: ["node-1"]
-cluster.initial_master_nodes: ["node-1"]
+# Configuration de la sécurité (désactivée pour un environnement de test)
+xpack.security.enabled: true
+xpack.security.http.ssl.enabled: true
+xpack.security.http.ssl.keystore.path: certs/elastic-certificates.p12
+xpack.security.http.ssl.truststore.path: certs/elastic-certificates.p12
+discovery.type: 'single-node'
+ELASTIC_PASSWORD: 'pass123'
 
-# Security settings
-# xpack.security.enabled: false
-# # xpack.security.enabled: true
-# xpack.security.http.ssl.enabled: false
-# # xpack.security.http.ssl.keystore.path: certs/http.p12
-# xpack.security.transport.ssl.enabled: false
-# xpack.security.transport.ssl.keystore.path: certs/transport.p12
-# xpack.security.transport.ssl.truststore.path: certs/transport.p12
-ES_JAVA_OPTS: -Xms256m -Xmx256m
-# Index settings
-index.number_of_shards: 1
-index.number_of_replicas: 1
+# Configuration de la mémoire JVM
+ES_JAVA_OPTS: "-Xms2g -Xmx2g" 
 
-# Logging settings
+# Paramètres des index
+index.number_of_shards: 1         # 1 shard (fragments) par index
+index.number_of_replicas: 0       # Pas de réplica (sauvegarde supplémentaire)
+
+# Configuration des journaux
 logger.level: info
 
-# Memory settings
-bootstrap.memory_lock: true
+# # Verrouillage de la mémoire (pour éviter le swapping)
+# bootstrap.memory_lock: true
 
 
-get( self, request):
-  user = request.user 
-  if user is not None:

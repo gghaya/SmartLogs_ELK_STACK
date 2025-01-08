@@ -1,3 +1,7 @@
 FROM docker.elastic.co/elasticsearch/elasticsearch:8.17.0
-# EXPOSE 9200
-# COPY elasticsearch.yml /usr/share/elasticsearch/config/elastic.yml
+USER root
+WORKDIR /usr/share/elasticsearch
+COPY setup.sh .
+COPY elasticsearch.yml /usr/share/elasticsearch/config/elastic.yml
+RUN chmod +x /usr/share/elasticsearch/setup.sh
+CMD [ "/usr/share/elasticsearch/setup.sh" ]

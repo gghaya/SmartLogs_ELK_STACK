@@ -6,60 +6,37 @@ services:
       dockerfile: Dockerfile
     ports:
       - 9200:9200
-    environment:
-      discovery.type: 'single-node'
-      # xpack.security.enabled: 'true'
-      # ELASTIC_PASSWORD: 'pass123'
-      ES_JAVA_OPTS: '-Xmx2g -Xms2g'
-  kibana:
-      build:
-        context: Kibana/
-        dockerfile: Dockerfile
-      ports:
-        - 5601:5601
-      environment:
-        - "ELASTICSEARCH_HOSTS: 'http://elasticsearch:9200'"
-        # - "ELASTICSEARCH_USERNAME: 'elastic'"
-        # - "ELASTICSEARCH_PASSWORD: 'pass123'"
-    # volumes:
-    #   - ./kibana.yml:/usr/share/kibana/config/kibana.yml
-    
-# version: '3.9'
-# services:
-#   elasticsearch:
-#     build:
-#       context: ELASTICSEARCH/
-#       dockerfile: Dockerfile
-#     ports:
-#       - 9200:9200
-#       - 9300:9300
-#     volumes:
-#       - "es-data:/usr/share/elasticsearch/data"
-#     environment:
-#       - "xpack.ml.use_auto_machine_memory_percent=true"
-#       - "xpack.security.enabled: false"
-#       - "xpack.security.http.ssl.enabled: false"
-#     mem_limit: 1GB
-#     networks:
-#       - ELK
-#   kibana:
-#       build:
-#         context: Kibana/
-#         dockerfile: Dockerfile
-#       ports:
-#         - 5601:5601
-#       volumes:
-#         - "kibana-data:/usr/share/kibana/data"
-#       environment:
-#         - 'ELASTICSEARCH_HOSTS=["http://elasticsearch:9200"]'
-#       networks:
-#         - ELK
-#       depends_on:
-#         - elasticsearch
+    networks:
+        - ELK
+    volumes:
+      - "els-data:/usr/share/elasticsearch/data"
+      - "cert_v:/usr/share/elasticsearch/config/certs"
+    # environment:
+  # kibana:
+  #     build:
+  #       context: Kibana/
+  #       dockerfile: Dockerfile
+  #     ports:
+  #       - 5601:5601
+  #     networks:
+  #       - ELK
+  #     environment:
+  #       - "ELASTICSEARCH_HOSTS: 'http://elasticsearch:9200'"
+  #       # - "ELASTICSEARCH_USERNAME: 'elastic'"
+  #       # - "server.host: 0.0.0.0"
+  #       # - "ELASTICSEARCH_PASSWORD: 'pass123'"
+  #     volumes:
+  #       - "kibana-data:/usr/share/kibana/data"
 
-# networks:
-#   ELK:
-#     driver: bridge
-# volumes:
-#   es-data:
-#   kibana-data:
+networks:
+  ELK:
+    driver: bridge
+volumes:
+  els-data:
+  cert_v:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '${PWD}/cert'
+  # kibana-data:
