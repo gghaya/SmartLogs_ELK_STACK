@@ -1,5 +1,5 @@
 elasticsearch.hosts: ["https://elasticsearch:9200"]
-elasticsearch.ssl.certificateAuthorities: ["/usr/share/kibana/config/certs/ca/ca.crt"]
+elasticsearch.ssl.certificateAuthorities: ["/usr/share/kibana/config/certs/elasticsearch/elasticsearch.crt"]
 elasticsearch.ssl.verificationMode: full
 elasticsearch.username: "kibana-system"
 elasticsearch.password: "pass"

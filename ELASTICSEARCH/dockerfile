@@ -6,7 +6,7 @@ WORKDIR /usr/share/elasticsearch
 # Copy necessary files
 COPY setup.sh .
 COPY elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
-# COPY ../cert /usr/share/elasticsearch/config/certs
+COPY instances.yml /usr/share/elasticsearch/config/certificates/instances.yml
 
 # Ensure proper permissions for all files
 RUN chmod +x /usr/share/elasticsearch/setup.sh
