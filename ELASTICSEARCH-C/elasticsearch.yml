@@ -7,18 +7,18 @@ http.port: 9200
 # Configuration de la sécurité (désactivée pour un environnement de test)
 xpack.security.enabled: true
 xpack.security.http.ssl.enabled: true
-xpack.security.http.ssl.key: certs/ca/ca.key
-xpack.security.http.ssl.certificate: certs/ca/ca.crt
-xpack.security.http.ssl.certificate_authorities: [ "certs/ca/ca.crt" ]
+xpack.security.http.ssl.key: config/certs/ca/ca.key
+xpack.security.http.ssl.certificate: config/certs/ca/ca.crt
+xpack.security.http.ssl.certificate_authorities: [ "config/certs/ca/ca.crt" ]
 discovery.type: 'single-node'
-# ELASTIC_PASSWORD: 'pass123'
+ELASTIC_PASSWORD: 'pass123'
 discovery.seed_hosts: []
 # Configuration de la mémoire JVM
-# ES_JAVA_OPTS: "-Xms2g -Xmx2g" 
+ES_JAVA_OPTS: "-Xms2g -Xmx2g" 
 
 # Paramètres des index
-# index.number_of_shards: 1         # 1 shard (fragments) par index
-# index.number_of_replicas: 0       # Pas de réplica (sauvegarde supplémentaire)
+index.number_of_shards: 1         # 1 shard (fragments) par index
+index.number_of_replicas: 0       # Pas de réplica (sauvegarde supplémentaire)
 
 # Configuration des journaux
 logger.level: info

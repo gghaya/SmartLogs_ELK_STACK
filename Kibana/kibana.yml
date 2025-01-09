@@ -1,7 +1,5 @@
-# To allow connections from remote users, set this parameter to a non-loopback address.
-name: kibana
-# The URLs of the Elasticsearch instances to use for all your queries.
 elasticsearch.hosts: ["https://elasticsearch:9200"]
-elastic_ssl_certificationauthorities : ["/usr/share/kibana/config/certs/elastic-certificates.p12"]
+elasticsearch.ssl.certificateAuthorities: ["/usr/share/kibana/config/certs/ca/ca.crt"]
+elasticsearch.ssl.verificationMode: full
 elasticsearch.username: "kibana-system"
 elasticsearch.password: "pass"

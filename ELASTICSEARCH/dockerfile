@@ -1,7 +1,19 @@
 FROM docker.elastic.co/elasticsearch/elasticsearch:8.17.0
+
 USER root
 WORKDIR /usr/share/elasticsearch
+
+# Copy necessary files
 COPY setup.sh .
-COPY elasticsearch.yml /usr/share/elasticsearch/config/elastic.yml
+COPY elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
+# COPY ../cert /usr/share/elasticsearch/config/certs
+
+# Ensure proper permissions for all files
 RUN chmod +x /usr/share/elasticsearch/setup.sh
-CMD [ "/usr/share/elasticsearch/setup.sh" ]
+RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/config
+# RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/config/
+
+USER elasticsearch
+
+# Start Elasticsearch using setup.sh
+CMD ["/usr/share/elasticsearch/setup.sh"]
