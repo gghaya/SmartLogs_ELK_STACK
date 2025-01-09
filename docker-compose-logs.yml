@@ -12,21 +12,22 @@ services:
       - "els-data:/usr/share/elasticsearch/data"
       - "cert_v:/usr/share/elasticsearch/config/certs"
     # environment:
-  # kibana:
-  #     build:
-  #       context: Kibana/
-  #       dockerfile: Dockerfile
-  #     ports:
-  #       - 5601:5601
-  #     networks:
-  #       - ELK
-  #     environment:
-  #       - "ELASTICSEARCH_HOSTS: 'http://elasticsearch:9200'"
-  #       # - "ELASTICSEARCH_USERNAME: 'elastic'"
-  #       # - "server.host: 0.0.0.0"
-  #       # - "ELASTICSEARCH_PASSWORD: 'pass123'"
-  #     volumes:
-  #       - "kibana-data:/usr/share/kibana/data"
+  kibana:
+      build:
+        context: Kibana/
+        dockerfile: Dockerfile
+      ports:
+        - 5601:5601
+      networks:
+        - ELK
+      # environment:
+      #   - "ELASTICSEARCH_HOSTS: 'http://elasticsearch:9200'"
+      #   # - "ELASTICSEARCH_USERNAME: 'elastic'"
+      #   # - "server.host: 0.0.0.0"
+      #   # - "ELASTICSEARCH_PASSWORD: 'pass123'"
+      volumes:
+        - "kibana-data:/usr/share/kibana/data"
+        - "cert_v:/usr/share/kibana/config/certs"
 
 networks:
   ELK:
@@ -39,4 +40,4 @@ volumes:
       type: 'none'
       o: 'bind'
       device: '${PWD}/cert'
-  # kibana-data:
+  kibana-data:
