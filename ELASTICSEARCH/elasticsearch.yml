@@ -9,7 +9,9 @@ xpack.security.enabled: true
 xpack.security.http.ssl.enabled: true
 xpack.security.http.ssl.key: certs/elasticsearch/elasticsearch.key
 xpack.security.http.ssl.certificate: certs/elasticsearch/elasticsearch.crt
-xpack.security.http.ssl.certificate_authorities: [ "certs/elasticsearch/elasticsearch.crt" ]
+xpack.security.http.ssl.certificate_authorities: [ "certs/kibana/kibana.crt" ]
+xpack.security.http.ssl.verification_mode: certificate
+xpack.license.self_generated.type: basic
 discovery.type: 'single-node'
 # ELASTIC_PASSWORD: 'pass123'
 discovery.seed_hosts: []

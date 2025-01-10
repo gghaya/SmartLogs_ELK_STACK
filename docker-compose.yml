@@ -1,12 +1,7 @@
 version: '3'
 services:
-  # test:
-  #     build:
-  #       context: ELASTICSEARCH-C/
-  #       dockerfile: Dockerfile
-  #     volumes:
-  #       - "cert_v:/usr/share/elasticsearch/config/certs"
   elasticsearch:
+    container_name: elasticsearch
     build:
       context: ELASTICSEARCH/
       dockerfile: Dockerfile
@@ -19,6 +14,7 @@ services:
     volumes:
       - "els-data:/usr/share/elasticsearch/data"
       - "cert_v:/usr/share/elasticsearch/config/certs"
+      - ./env/.env:/usr/share/elasticsearch/.env
     # environment:
   kibana:
       build:
@@ -30,11 +26,6 @@ services:
         - elasticsearch
       networks:
         - ELK
-      # environment:
-      #   - "ELASTICSEARCH_HOSTS: 'http://elasticsearch:9200'"
-      #   # - "ELASTICSEARCH_USERNAME: 'elastic'"
-      #   # - "server.host: 0.0.0.0"
-      #   # - "ELASTICSEARCH_PASSWORD: 'pass123'"
       volumes:
         - "kibana-data:/usr/share/kibana/data"
         - "cert_v:/usr/share/kibana/config/certs/"

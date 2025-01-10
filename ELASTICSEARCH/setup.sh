@@ -3,6 +3,7 @@ bin/elasticsearch-certutil cert --silent --pem --self-signed \
 --in config/certificates/instances.yml \
 -out config/certs/bundle.zip && \
 unzip -qq config/certs/bundle.zip -d config/certs
+bin/elasticsearch-reset-password --username kibana_system --b "pass123"
 # bin/elasticsearch-certutil ca --silent --pem -out config/certs/elastic-certificates.zip > /dev/null 2>&1 && \
 # unzip -qq config/certs/elastic-certificates.zip -d config/certs > /dev/null 2>&1
 exec /usr/share/elasticsearch/bin/elasticsearch
