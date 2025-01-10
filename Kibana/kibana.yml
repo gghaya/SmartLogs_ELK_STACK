@@ -3,7 +3,7 @@ elasticsearch.hosts: ["https://elasticsearch:9200"]
 server.ssl.enabled: true
 server.ssl.certificate: /usr/share/kibana/config/certs/kibana/kibana.crt
 server.ssl.key: /usr/share/kibana/config/certs/kibana/kibana.key
-elasticsearch.ssl.certificateAuthorities: ["/usr/share/kibana/config/certs/elasticsearch/elasticsearch.crt"]
-elasticsearch.ssl.verificationMode: certificate
+elasticsearch.ssl.certificateAuthorities: ["/usr/share/kibana/config/certs/ca/ca.crt"]
+elasticsearch.ssl.verificationMode: none
 elasticsearch.username: "kibana_system"
-elasticsearch.password: "pass123"
+elasticsearch.password: "rz+jk*qlteYv2vbiMyEq"

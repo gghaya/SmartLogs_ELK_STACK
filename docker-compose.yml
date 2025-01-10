@@ -29,6 +29,9 @@ services:
       volumes:
         - "kibana-data:/usr/share/kibana/data"
         - "cert_v:/usr/share/kibana/config/certs/"
+        - ./env/.env:/usr/share/elasticsearch/.env
+      environment:
+        - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
 
 networks:
   ELK:
