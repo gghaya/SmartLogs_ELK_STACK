@@ -1,9 +1,11 @@
 server.host: "0.0.0.0"
+server.publicBaseUrl: https://127.0.0.1:5601
 elasticsearch.hosts: ["https://elasticsearch:9200"]
 server.ssl.enabled: true
 server.ssl.certificate: /usr/share/kibana/config/certs/kibana/kibana.crt
 server.ssl.key: /usr/share/kibana/config/certs/kibana/kibana.key
 elasticsearch.ssl.certificateAuthorities: ["/usr/share/kibana/config/certs/ca/ca.crt"]
-elasticsearch.ssl.verificationMode: none
+elasticsearch.ssl.verificationMode: certificate
 elasticsearch.username: "kibana_system"
-elasticsearch.password: "rz+jk*qlteYv2vbiMyEq"
+elasticsearch.password: ${KIBANA_PASSWORD}
+# mem_limit: ${MEM_LIMIT}

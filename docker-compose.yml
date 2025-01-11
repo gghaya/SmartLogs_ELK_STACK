@@ -5,17 +5,23 @@ services:
     build:
       context: ELASTICSEARCH/
       dockerfile: Dockerfile
-    # depends_on:
-    #   - test
+    env_file:
+      - .env
     ports:
       - 9200:9200
-    networks:
-        - ELK
+    # networks:
+    #     - ELK
     volumes:
       - "els-data:/usr/share/elasticsearch/data"
       - "cert_v:/usr/share/elasticsearch/config/certs"
-      - ./env/.env:/usr/share/elasticsearch/.env
-    # environment:
+      # - ./env/.env:/usr/share/elasticsearch/.env
+    environment:
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+    mem_limit: ${MEM_LIMIT}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
   kibana:
       build:
         context: Kibana/
@@ -24,18 +30,19 @@ services:
         - 5601:5601
       depends_on :
         - elasticsearch
-      networks:
-        - ELK
+      # networks:
+      #   - ELK
       volumes:
         - "kibana-data:/usr/share/kibana/data"
         - "cert_v:/usr/share/kibana/config/certs/"
-        - ./env/.env:/usr/share/elasticsearch/.env
-      environment:
-        - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
+        # - ./env/.env:/usr/share/elasticsearch/.env
+      env_file:
+        - .env
+      mem_limit: ${MEM_LIMIT}
 
-networks:
-  ELK:
-    driver: bridge
+# networks:
+#   ELK:
+#     driver: bridge
 volumes:
   els-data:
   cert_v:
