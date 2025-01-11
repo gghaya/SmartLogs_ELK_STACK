@@ -18,6 +18,7 @@ xpack.security.transport.ssl.key:  certs/elasticsearch/elasticsearch.key
 xpack.security.transport.ssl.certificate: certs/elasticsearch/elasticsearch.crt
 xpack.security.transport.ssl.certificate_authorities:  [ "certs/ca/ca.crt" ]
 xpack.security.transport.ssl.verification_mode: certificate
+logger.level: info
 # Configuration de la mémoire JVM
 # ES_JAVA_OPTS: "-Xms2g -Xmx2g" 
 
@@ -26,7 +27,6 @@ xpack.security.transport.ssl.verification_mode: certificate
 # index.number_of_replicas: 0       # Pas de réplica (sauvegarde supplémentaire)
 
 # Configuration des journaux
-logger.level: info
 
 # # Verrouillage de la mémoire (pour éviter le swapping)
 # bootstrap.memory_lock: true

@@ -9,12 +9,9 @@ services:
       - .env
     ports:
       - 9200:9200
-    # networks:
-    #     - ELK
     volumes:
       - "els-data:/usr/share/elasticsearch/data"
       - "cert_v:/usr/share/elasticsearch/config/certs"
-      # - ./env/.env:/usr/share/elasticsearch/.env
     environment:
       - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
     mem_limit: ${MEM_LIMIT}
@@ -30,19 +27,14 @@ services:
         - 5601:5601
       depends_on :
         - elasticsearch
-      # networks:
-      #   - ELK
       volumes:
         - "kibana-data:/usr/share/kibana/data"
         - "cert_v:/usr/share/kibana/config/certs/"
-        # - ./env/.env:/usr/share/elasticsearch/.env
       env_file:
         - .env
       mem_limit: ${MEM_LIMIT}
 
-# networks:
-#   ELK:
-#     driver: bridge
+
 volumes:
   els-data:
   cert_v:
