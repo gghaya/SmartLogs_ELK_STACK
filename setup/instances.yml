@@ -11,3 +11,9 @@ instances:
       - localhost
     ip:
       - 127.0.0.1
+  - name: logstash
+    dns:
+      - logstash 
+      - localhost
+    ip:
+      - 127.0.0.1

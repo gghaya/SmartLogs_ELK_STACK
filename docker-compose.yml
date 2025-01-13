@@ -5,7 +5,7 @@ services:
     env_file:
       - .env
     build :
-      context: test
+      context: setup
       dockerfile: Dockerfile
     volumes:
       - "cert_v:/usr/share/elasticsearch/config/certs"
@@ -44,6 +44,20 @@ services:
       env_file:
         - .env
       mem_limit: ${MEM_LIMIT}
+  logstash:
+      build:
+        context: logstash/
+        dockerfile: Dockerfile
+      ports:
+        - 9600:9600
+        - 9700:9700
+      depends_on :
+        - elasticsearch
+      volumes:
+        - "cert_v:/usr/share/logstash/config/certs/"
+      env_file:
+        - .env
+      # mem_limit: ${MEM_LIMIT}
 
 
 volumes:

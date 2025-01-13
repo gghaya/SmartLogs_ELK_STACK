@@ -1,0 +1,10 @@
+
+api.http.host : 0.0.0.0
+api.ssl.enabled: true
+# api.ssl.certificate: /usr/share/logstash/config/certs/logstash/logstash.crt
+# api.ssl.certificate_key: /usr/share/logstash/config/certs/logstash/logstash.key
+monitoring.elasticsearch.hosts: ["https://elasticsearch:9200"]
+monitoring.elasticsearch.ssl.certificate_authority: "/usr/share/logstash/config/certs/ca/ca.crt"
+monitoring.elasticsearch.ssl.verification_mode: "certificate"
+monitoring.elasticsearch.username: "logstash_system"
+monitoring.elasticsearch.password: ${ELASTIC_PASSWORD}
