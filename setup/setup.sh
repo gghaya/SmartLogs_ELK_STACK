@@ -3,6 +3,12 @@ bin/elasticsearch-certutil ca --silent --pem -out config/certs/ca.zip;
 unzip config/certs/ca.zip -d config/certs;
 bin/elasticsearch-certutil cert --silent --pem -out config/certs/certs.zip --in config/certificates/instances.yml --ca-cert config/certs/ca/ca.crt --ca-key config/certs/ca/ca.key;
 unzip config/certs/certs.zip -d config/certs;
+openssl pkcs12 -export \
+  -inkey config/certs/logstash/logstash.key \
+  -in config/certs/logstash/logstash.crt \
+  -certfile config/certs/ca/ca.crt \
+  -out config/certs/logstash/logstash.p12 \
+  -passout pass:${ELASTIC_PASSWORD}
 # export ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
 # sleep 30
 # exec /usr/share/elasticsearch/bin/elasticsearch

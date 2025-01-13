@@ -1,6 +1,8 @@
 
 api.http.host : 0.0.0.0
 api.ssl.enabled: true
+api.ssl.keystore.path: "config/certs/logstash/logstash.p12"
+api.ssl.keystore.password: ${ELASTIC_PASSWORD}
 # api.ssl.certificate: /usr/share/logstash/config/certs/logstash/logstash.crt
 # api.ssl.certificate_key: /usr/share/logstash/config/certs/logstash/logstash.key
 monitoring.elasticsearch.hosts: ["https://elasticsearch:9200"]
