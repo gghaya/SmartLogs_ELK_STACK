@@ -1,0 +1,35 @@
+
+cluster.name: "mon-cluster"
+node.name: "noeud-1"
+network.host: 0.0.0.0       
+http.port: 9200            
+
+# Configuration de la sécurité (désactivée pour un environnement de test)
+xpack.security.enabled: true
+xpack.security.http.ssl.enabled: true
+xpack.security.http.ssl.key: certs/elasticsearch/elasticsearch.key
+xpack.security.http.ssl.certificate: certs/elasticsearch/elasticsearch.crt
+xpack.security.http.ssl.certificate_authorities: [ "certs/ca/ca.crt" ]
+xpack.security.http.ssl.verification_mode: certificate
+xpack.license.self_generated.type: basic
+discovery.type: 'single-node'
+xpack.security.transport.ssl.enabled: true
+xpack.security.transport.ssl.key:  certs/elasticsearch/elasticsearch.key
+xpack.security.transport.ssl.certificate: certs/elasticsearch/elasticsearch.crt
+xpack.security.transport.ssl.certificate_authorities:  [ "certs/ca/ca.crt" ]
+xpack.security.transport.ssl.verification_mode: certificate
+logger.level: info
+
+# Configuration de la mémoire JVM
+# ES_JAVA_OPTS: "-Xms2g -Xmx2g" 
+
+# Paramètres des index
+# index.number_of_shards: 1         # 1 shard (fragments) par index
+# index.number_of_replicas: 0       # Pas de réplica (sauvegarde supplémentaire)
+
+# Configuration des journaux
+
+# # Verrouillage de la mémoire (pour éviter le swapping)
+# bootstrap.memory_lock: true
+
+

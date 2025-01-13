@@ -1,6 +1,17 @@
 version: '3'
 services:
+  setup:
+    container_name: setup
+    env_file:
+      - .env
+    build :
+      context: test
+      dockerfile: Dockerfile
+    volumes:
+      - "cert_v:/usr/share/elasticsearch/config/certs"
   elasticsearch:
+    depends_on : 
+      - setup
     container_name: elasticsearch
     build:
       context: ELASTICSEARCH/
